@@ -1,0 +1,36 @@
+{
+  "edition": "SP3.22-P2",
+  "based_on": "SP3.22",
+  "supersedes_public_package": "SP3.22-P1",
+  "built_on": "2026-09-16",
+  "model_change": false,
+  "prepared_datasets_included": 13,
+  "scientific_review_changed": false,
+  "fit_approval_changed": false,
+  "unpublished_agency_material_included": false,
+  "reproduced_reference_image_included": false,
+  "source_documents_bundled": false,
+  "public_reference_count": 25,
+  "evidence_display_policy": {
+    "edition": "SP3.22-P2",
+    "date": "2026-09-16",
+    "decision": "Project owner authorised public display of these named datasets with non-final or preliminary labels. Unpublished agency draft material remains excluded.",
+    "scientific_review_changed": false,
+    "fitting_approval_changed": false,
+    "datasets": {
+      "cox-uraidla-water_year_apr_mar-approx-runoff": "Not final",
+      "information-pack-dam-shares": "Preliminary",
+      "information-pack-surface-use-summary": "Preliminary",
+      "marne-current-keyneton-water_year_apr_mar-approx-runoff": "Not final",
+      "marne-planning-inventory-dew2019": "Not final",
+      "marne-predecessor-keyneton-water_year_apr_mar-approx-runoff": "Not final",
+      "marne-river-1998-rapid-survey-binned-areas": "Not final",
+      "marne-river-published-capacity-area-fit-mcmurray2004": "Not final",
+      "pwra-2020-project-information-pack": "Preliminary",
+      "saunders-planning-inventory-dew2019": "Not final",
+      "waterdata-A4260529-daily-mean-flow-days-v1": "Not final",
+      "waterdata-A4260605-daily-mean-flow-days-v1": "Not final",
+      "yaldara-tanunda-water_year_apr_mar-approx-runoff": "Not final"
+    }
+  }
+}
