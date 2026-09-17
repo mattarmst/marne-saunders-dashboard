@@ -1,0 +1,2736 @@
+{
+  "edition": "SP3.22-P2",
+  "display_status": "Not final",
+  "final": false,
+  "notice": "Local rainfall, flow and dam-survey extracts are not final. Information Pack dam counts and water-use summaries are preliminary. These records provide context, not calibration of the illustrative models.",
+  "data": [
+    {
+      "contract_id": "evidence-dataset-v1",
+      "dataset_id": "marne-current-keyneton-water_year_apr_mar-approx-runoff",
+      "version": "0.1.0",
+      "label": "Marne Gorge (current gauge) / Keyneton · Apr–Mar",
+      "kind": "xy_points",
+      "evidence_type": "derived_observations",
+      "axes": {
+        "x": {
+          "variable_id": "rainfall_depth",
+          "label": "Representative annual rainfall",
+          "unit": "mm"
+        },
+        "y": {
+          "variable_id": "runoff_depth",
+          "label": "Approximate observed runoff",
+          "unit": "mm"
+        }
+      },
+      "geography": {
+        "catchment_id": "marne",
+        "rainfall_station_id": "23725",
+        "flow_station_id": "A4260605",
+        "rainfall_role": "representative_point_proxy",
+        "spatial_support": "point_rainfall_paired_with_gauged_outlet",
+        "area_km2": 239.0,
+        "pairing_review_status": "unreviewed",
+        "runoff_depth_role": "observed_gauge_yield_per_upstream_area",
+        "area_basis": "co_located_predecessor_proxy",
+        "area_note": "Approximate 239 km²: uses the published predecessor-gauge area because DEW describes the gauges as co-located. The two flow records are not merged.",
+        "rainfall_label": "Keyneton",
+        "area_sources": [
+          {
+            "title": "Australian Rainfall and Runoff, Project 5: Regional Flood Methods, Stage 3 report",
+            "publisher": "Engineers Australia / ARR research project",
+            "year": 2015,
+            "url": "https://www.arr-software.org/pdfs/ARR_Project05_Stage3_report.pdf",
+            "pdf_page": 108,
+            "printed_page": "90",
+            "location": "Table A3, A4260529 row",
+            "supports": "Published A4260529 area: 239 km²."
+          },
+          {
+            "title": "Marne Saunders PWRA ecological condition assessment",
+            "publisher": "Department for Environment and Water",
+            "year": 2024,
+            "url": "https://www.waterconnect.sa.gov.au/Content/Publications/DEW/DEW-TR-2024-23.pdf",
+            "pdf_page": 13,
+            "printed_page": "12",
+            "location": "Section 3.1, paragraph on gauge record combination",
+            "supports": "Describes A4260529 and A4260605 as co-located gauges. This supports transferring the predecessor area as an approximate proxy, not as an independently surveyed A4260605 area."
+          }
+        ]
+      },
+      "period_basis": "water_year_apr_mar",
+      "boundary_id": "point_rainfall_vs_observed_gauge_flow",
+      "review": {
+        "status": "unreviewed",
+        "quality_policy_id": "preserve-source-codes",
+        "fit_approved": false
+      },
+      "publication": {
+        "status": "approved_public",
+        "allowed_build_profiles": [
+          "technical-review",
+          "public-learning"
+        ],
+        "public_display": {
+          "edition": "SP3.22-P2",
+          "authorised": true,
+          "date": "2026-09-16",
+          "label": "Not final",
+          "final": false,
+          "basis": "Project-owner permission for public display; not scientific review or agency endorsement."
+        },
+        "inherited_policy": {
+          "status": "review_only",
+          "allowed_build_profiles": [
+            "technical-review"
+          ]
+        }
+      },
+      "provenance": {
+        "sources": [
+          {
+            "source_id": "silo-23725",
+            "filename": "23725.csv",
+            "sha256": "624d25120f253196538cc7d35a13dd821d63eb1e7ebd50f144b39b85e54785eb"
+          },
+          {
+            "source_id": "flow-A4260605",
+            "filename": "BulkExport-A4260605-20260907163220.zip",
+            "sha256": "2d0bbdf1420a42cd97b96f7a86d61eff8384d0f818ed8a1da6d2e111b36118cb",
+            "archive_member": "DataSetExport-Discharge.Best Available@A4260605-Aggregate-m^3 s-20260907163220.csv"
+          },
+          {
+            "source_id": "sp33-gauge-area-registry",
+            "filename": "gauge_areas_v0_1.json",
+            "sha256": "019dec341e9bea582a62a75a27da55db0b74c1e2207e3dea1c2a64fa131a001e"
+          }
+        ],
+        "adapter_version": "0.1.0",
+        "transforms": [
+          {
+            "operation": "aggregate_then_pair",
+            "period_basis": "water_year_apr_mar",
+            "missing_rule": "all_expected_days_required",
+            "grade_policy": "all_finite_unreviewed",
+            "raw_days_available": true,
+            "gauge_merging": "none",
+            "rainfall_station_selection": "explicit_configuration"
+          },
+          {
+            "operation": "volume_to_approximate_runoff_depth",
+            "formula": "runoff_mm = flow_ML / area_km2",
+            "area_km2": 239.0,
+            "area_basis": "co_located_predecessor_proxy",
+            "area_source_ids": [
+              "arr-2015-table-a3",
+              "dew-2024-23"
+            ],
+            "input_dataset_id": "marne-current-keyneton-water_year_apr_mar",
+            "input_version": "0.1.0",
+            "input_dataset_sha256": "a9c4b7b22e4ac4ced919525f8d63214c16470c68cc17afe5eab0a8ac7afc6df0",
+            "adapter_version": "sp3.3-v0.1",
+            "gauge_merging": "none",
+            "naturalisation": "none",
+            "fit_approval_changed": false
+          }
+        ]
+      },
+      "limitations": [
+        "Data-review preview, not a verified rainfall–runoff calibration dataset.",
+        "Only periods with every daily numeric value are included; source-grade interpretation remains unreviewed.",
+        "Rainfall is a point proxy; flow is observed developed-catchment discharge.",
+        "SILO and flow dates retain their exported day conventions; no day-boundary correction is claimed.",
+        "Approximate observed runoff is annual gauge flow (ML) divided by adopted upstream area (km²). Approximate 239 km²: uses the published predecessor-gauge area because DEW describes the gauges as co-located. The two flow records are not merged.",
+        "No adjustment removes farm dams, water use, channel losses or groundwater contributions. Not an estimate of natural/no-dam runoff.",
+        "Unit compatibility permits a visual comparison only. No observed dataset or model parameters have been approved or fitted."
+      ],
+      "records": [
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2002-04-01",
+          "period_start": "2002-04-01",
+          "period_end_exclusive": "2003-04-01",
+          "period_label": "2002–2003",
+          "x": 391.5,
+          "y": 0.9084652719665272,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 86,
+            "15": 248,
+            "20": 31
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 217.1232
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2003-04-01",
+          "period_start": "2003-04-01",
+          "period_end_exclusive": "2004-04-01",
+          "period_label": "2003–2004",
+          "x": 544.5,
+          "y": 25.780530878661086,
+          "rainfall_quality_codes": {
+            "0": 363,
+            "15": 3
+          },
+          "flow_grade_codes": {
+            "15": 308,
+            "20": 42,
+            "30": 16
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 6161.54688
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2005-04-01",
+          "period_start": "2005-04-01",
+          "period_end_exclusive": "2006-04-01",
+          "period_label": "2005–2006",
+          "x": 739.3,
+          "y": 31.78113740585774,
+          "rainfall_quality_codes": {
+            "0": 352,
+            "15": 13
+          },
+          "flow_grade_codes": {
+            "15": 274,
+            "20": 37,
+            "30": 54
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 7595.69184
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2006-04-01",
+          "period_start": "2006-04-01",
+          "period_end_exclusive": "2007-04-01",
+          "period_label": "2006–2007",
+          "x": 340.6,
+          "y": 0.33858677824267785,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 49,
+            "15": 307,
+            "30": 9
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 80.92224
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2007-04-01",
+          "period_start": "2007-04-01",
+          "period_end_exclusive": "2008-04-01",
+          "period_label": "2007–2008",
+          "x": 390.7,
+          "y": 0.7458958995815899,
+          "rainfall_quality_codes": {
+            "0": 349,
+            "15": 17
+          },
+          "flow_grade_codes": {
+            "10": 87,
+            "15": 268,
+            "20": 11
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 178.26912
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2009-04-01",
+          "period_start": "2009-04-01",
+          "period_end_exclusive": "2010-04-01",
+          "period_label": "2009–2010",
+          "x": 591.0,
+          "y": 9.674414058577407,
+          "rainfall_quality_codes": {
+            "0": 363,
+            "15": 2
+          },
+          "flow_grade_codes": {
+            "10": 111,
+            "15": 202,
+            "30": 52
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2312.18496
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2012-04-01",
+          "period_start": "2012-04-01",
+          "period_end_exclusive": "2013-04-01",
+          "period_label": "2012–2013",
+          "x": 333.4,
+          "y": 2.4700639330543934,
+          "rainfall_quality_codes": {
+            "0": 361,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "10": 114,
+            "15": 200,
+            "30": 51
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 590.34528
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2013-04-01",
+          "period_start": "2013-04-01",
+          "period_end_exclusive": "2014-04-01",
+          "period_label": "2013–2014",
+          "x": 606.3,
+          "y": 11.141731882845189,
+          "rainfall_quality_codes": {
+            "0": 360,
+            "15": 5
+          },
+          "flow_grade_codes": {
+            "10": 146,
+            "15": 164,
+            "30": 55
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2662.87392
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2014-04-01",
+          "period_start": "2014-04-01",
+          "period_end_exclusive": "2015-04-01",
+          "period_label": "2014–2015",
+          "x": 464.6,
+          "y": 13.990979748953976,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 164,
+            "15": 148,
+            "30": 53
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 3343.84416
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2016-04-01",
+          "period_start": "2016-04-01",
+          "period_end_exclusive": "2017-04-01",
+          "period_label": "2016–2017",
+          "x": 719.7,
+          "y": 40.992931882845184,
+          "rainfall_quality_codes": {
+            "0": 361,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "10": 207,
+            "15": 70,
+            "20": 63,
+            "30": 25
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 9797.31072
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2017-04-01",
+          "period_start": "2017-04-01",
+          "period_end_exclusive": "2018-04-01",
+          "period_label": "2017–2018",
+          "x": 440.7,
+          "y": 7.135591631799162,
+          "rainfall_quality_codes": {
+            "0": 364,
+            "25": 1
+          },
+          "flow_grade_codes": {
+            "10": 262,
+            "15": 62,
+            "30": 41
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1705.4063999999998
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2018-04-01",
+          "period_start": "2018-04-01",
+          "period_end_exclusive": "2019-04-01",
+          "period_label": "2018–2019",
+          "x": 334.2,
+          "y": 0.0,
+          "rainfall_quality_codes": {
+            "0": 364,
+            "25": 1
+          },
+          "flow_grade_codes": {
+            "10": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 0.0
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2019-04-01",
+          "period_start": "2019-04-01",
+          "period_end_exclusive": "2020-04-01",
+          "period_label": "2019–2020",
+          "x": 353.3,
+          "y": 0.0,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "10": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 0.0
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2020-04-01",
+          "period_start": "2020-04-01",
+          "period_end_exclusive": "2021-04-01",
+          "period_label": "2020–2021",
+          "x": 467.6,
+          "y": 0.0,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 0.0
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2021-04-01",
+          "period_start": "2021-04-01",
+          "period_end_exclusive": "2022-04-01",
+          "period_label": "2021–2022",
+          "x": 455.7,
+          "y": 0.8711939748953975,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 234,
+            "20": 92,
+            "30": 39
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 208.21536
+        },
+        {
+          "record_id": "marne-current-keyneton-water_year_apr_mar-2022-04-01",
+          "period_start": "2022-04-01",
+          "period_end_exclusive": "2023-04-01",
+          "period_label": "2022–2023",
+          "x": 693.6,
+          "y": 26.35543430962343,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 226,
+            "20": 32,
+            "30": 107
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 6298.9488
+        }
+      ],
+      "display_status": "Not final"
+    },
+    {
+      "contract_id": "evidence-dataset-v1",
+      "dataset_id": "marne-predecessor-keyneton-water_year_apr_mar-approx-runoff",
+      "version": "0.1.0",
+      "label": "Marne upstream Cambrai (earlier gauge) / Keyneton · Apr–Mar",
+      "kind": "xy_points",
+      "evidence_type": "derived_observations",
+      "axes": {
+        "x": {
+          "variable_id": "rainfall_depth",
+          "label": "Representative annual rainfall",
+          "unit": "mm"
+        },
+        "y": {
+          "variable_id": "runoff_depth",
+          "label": "Approximate observed runoff",
+          "unit": "mm"
+        }
+      },
+      "geography": {
+        "catchment_id": "marne",
+        "rainfall_station_id": "23725",
+        "flow_station_id": "A4260529",
+        "rainfall_role": "representative_point_proxy",
+        "spatial_support": "point_rainfall_paired_with_gauged_outlet",
+        "area_km2": 239.0,
+        "pairing_review_status": "unreviewed",
+        "runoff_depth_role": "observed_gauge_yield_per_upstream_area",
+        "area_basis": "published_gauge_area",
+        "area_note": "Published upstream area of 239 km². Kept separate from the newer gauge.",
+        "rainfall_label": "Keyneton",
+        "area_sources": [
+          {
+            "title": "Australian Rainfall and Runoff, Project 5: Regional Flood Methods, Stage 3 report",
+            "publisher": "Engineers Australia / ARR research project",
+            "year": 2015,
+            "url": "https://www.arr-software.org/pdfs/ARR_Project05_Stage3_report.pdf",
+            "pdf_page": 108,
+            "printed_page": "90",
+            "location": "Table A3, A4260529 row",
+            "supports": "Published A4260529 area: 239 km²."
+          }
+        ]
+      },
+      "period_basis": "water_year_apr_mar",
+      "boundary_id": "point_rainfall_vs_observed_gauge_flow",
+      "review": {
+        "status": "unreviewed",
+        "quality_policy_id": "preserve-source-codes",
+        "fit_approved": false
+      },
+      "publication": {
+        "status": "approved_public",
+        "allowed_build_profiles": [
+          "technical-review",
+          "public-learning"
+        ],
+        "public_display": {
+          "edition": "SP3.22-P2",
+          "authorised": true,
+          "date": "2026-09-16",
+          "label": "Not final",
+          "final": false,
+          "basis": "Project-owner permission for public display; not scientific review or agency endorsement."
+        },
+        "inherited_policy": {
+          "status": "review_only",
+          "allowed_build_profiles": [
+            "technical-review"
+          ]
+        }
+      },
+      "provenance": {
+        "sources": [
+          {
+            "source_id": "silo-23725",
+            "filename": "23725.csv",
+            "sha256": "624d25120f253196538cc7d35a13dd821d63eb1e7ebd50f144b39b85e54785eb"
+          },
+          {
+            "source_id": "flow-A4260529",
+            "filename": "BulkExport-A4260529-20260907163242.zip",
+            "sha256": "0ecb5e36418eaba3707632d8c85dd0662cf73590047ed3aea0e509426396b51d",
+            "archive_member": "DataSetExport-Discharge.Best Available@A4260529-Aggregate-m^3 s-20260907163242.csv"
+          },
+          {
+            "source_id": "sp33-gauge-area-registry",
+            "filename": "gauge_areas_v0_1.json",
+            "sha256": "019dec341e9bea582a62a75a27da55db0b74c1e2207e3dea1c2a64fa131a001e"
+          }
+        ],
+        "adapter_version": "0.1.0",
+        "transforms": [
+          {
+            "operation": "aggregate_then_pair",
+            "period_basis": "water_year_apr_mar",
+            "missing_rule": "all_expected_days_required",
+            "grade_policy": "all_finite_unreviewed",
+            "raw_days_available": true,
+            "gauge_merging": "none",
+            "rainfall_station_selection": "explicit_configuration"
+          },
+          {
+            "operation": "volume_to_approximate_runoff_depth",
+            "formula": "runoff_mm = flow_ML / area_km2",
+            "area_km2": 239.0,
+            "area_basis": "published_gauge_area",
+            "area_source_ids": [
+              "arr-2015-table-a3"
+            ],
+            "input_dataset_id": "marne-predecessor-keyneton-water_year_apr_mar",
+            "input_version": "0.1.0",
+            "input_dataset_sha256": "5de4aef90c95e7fe8aa4815dcdaa1b5974ceaa67cd9f709e86afdff58979b9a4",
+            "adapter_version": "sp3.3-v0.1",
+            "gauge_merging": "none",
+            "naturalisation": "none",
+            "fit_approval_changed": false
+          }
+        ]
+      },
+      "limitations": [
+        "Data-review preview, not a verified rainfall–runoff calibration dataset.",
+        "Only periods with every daily numeric value are included; source-grade interpretation remains unreviewed.",
+        "Rainfall is a point proxy; flow is observed developed-catchment discharge.",
+        "SILO and flow dates retain their exported day conventions; no day-boundary correction is claimed.",
+        "Approximate observed runoff is annual gauge flow (ML) divided by adopted upstream area (km²). Published upstream area of 239 km². Kept separate from the newer gauge.",
+        "No adjustment removes farm dams, water use, channel losses or groundwater contributions. Not an estimate of natural/no-dam runoff.",
+        "Unit compatibility permits a visual comparison only. No observed dataset or model parameters have been approved or fitted."
+      ],
+      "records": [
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1974-04-01",
+          "period_start": "1974-04-01",
+          "period_end_exclusive": "1975-04-01",
+          "period_label": "1974–1975",
+          "x": 677.8,
+          "y": 122.16363514644353,
+          "rainfall_quality_codes": {
+            "0": 355,
+            "15": 10
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 29197.1088
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1975-04-01",
+          "period_start": "1975-04-01",
+          "period_end_exclusive": "1976-04-01",
+          "period_label": "1975–1976",
+          "x": 624.1,
+          "y": 20.008577071129707,
+          "rainfall_quality_codes": {
+            "0": 364,
+            "15": 2
+          },
+          "flow_grade_codes": {
+            "20": 21,
+            "30": 345
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 4782.04992
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1976-04-01",
+          "period_start": "1976-04-01",
+          "period_end_exclusive": "1977-04-01",
+          "period_label": "1976–1977",
+          "x": 452.0,
+          "y": 0.6458671129707113,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 12,
+            "30": 353
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 154.36224
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1977-04-01",
+          "period_start": "1977-04-01",
+          "period_end_exclusive": "1978-04-01",
+          "period_label": "1977–1978",
+          "x": 343.3,
+          "y": 0.703816569037657,
+          "rainfall_quality_codes": {
+            "0": 361,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "20": 30,
+            "30": 335
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 168.21216
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1978-04-01",
+          "period_start": "1978-04-01",
+          "period_end_exclusive": "1979-04-01",
+          "period_label": "1978–1979",
+          "x": 577.4,
+          "y": 33.90343230125523,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 5,
+            "30": 360
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 8102.92032
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1979-04-01",
+          "period_start": "1979-04-01",
+          "period_end_exclusive": "1980-04-01",
+          "period_label": "1979–1980",
+          "x": 596.6,
+          "y": 31.568390962343095,
+          "rainfall_quality_codes": {
+            "0": 362,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "20": 5,
+            "30": 361
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 7544.84544
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1980-04-01",
+          "period_start": "1980-04-01",
+          "period_end_exclusive": "1981-04-01",
+          "period_label": "1980–1981",
+          "x": 593.4,
+          "y": 18.86043313807531,
+          "rainfall_quality_codes": {
+            "0": 362,
+            "15": 3
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 4507.64352
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1981-04-01",
+          "period_start": "1981-04-01",
+          "period_end_exclusive": "1982-04-01",
+          "period_label": "1981–1982",
+          "x": 625.6,
+          "y": 105.91504870292889,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 25313.696640000002
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1982-04-01",
+          "period_start": "1982-04-01",
+          "period_end_exclusive": "1983-04-01",
+          "period_label": "1982–1983",
+          "x": 316.7,
+          "y": 1.8182319665271967,
+          "rainfall_quality_codes": {
+            "0": 352,
+            "15": 13
+          },
+          "flow_grade_codes": {
+            "20": 19,
+            "30": 346
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 434.55744
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1983-04-01",
+          "period_start": "1983-04-01",
+          "period_end_exclusive": "1984-04-01",
+          "period_label": "1983–1984",
+          "x": 598.0,
+          "y": 19.099641841004185,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "30": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 4564.8144
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1984-04-01",
+          "period_start": "1984-04-01",
+          "period_end_exclusive": "1985-04-01",
+          "period_label": "1984–1985",
+          "x": 445.8,
+          "y": 14.365717154811716,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 3433.4064
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1985-04-01",
+          "period_start": "1985-04-01",
+          "period_end_exclusive": "1986-04-01",
+          "period_label": "1985–1986",
+          "x": 359.0,
+          "y": 4.126051882845188,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 986.1264
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1986-04-01",
+          "period_start": "1986-04-01",
+          "period_end_exclusive": "1987-04-01",
+          "period_label": "1986–1987",
+          "x": 544.8,
+          "y": 15.916145271966528,
+          "rainfall_quality_codes": {
+            "0": 267,
+            "15": 8,
+            "25": 90
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 3803.95872
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1987-04-01",
+          "period_start": "1987-04-01",
+          "period_end_exclusive": "1988-04-01",
+          "period_label": "1987–1988",
+          "x": 504.0,
+          "y": 35.37939012552302,
+          "rainfall_quality_codes": {
+            "25": 366
+          },
+          "flow_grade_codes": {
+            "30": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 8455.67424
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1988-04-01",
+          "period_start": "1988-04-01",
+          "period_end_exclusive": "1989-04-01",
+          "period_label": "1988–1989",
+          "x": 559.7,
+          "y": 48.29955213389121,
+          "rainfall_quality_codes": {
+            "0": 211,
+            "15": 32,
+            "25": 122
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 11543.59296
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-1995-04-01",
+          "period_start": "1995-04-01",
+          "period_end_exclusive": "1996-04-01",
+          "period_label": "1995–1996",
+          "x": 479.8,
+          "y": 9.232581087866109,
+          "rainfall_quality_codes": {
+            "0": 353,
+            "15": 13
+          },
+          "flow_grade_codes": {
+            "30": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2206.58688
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-2001-04-01",
+          "period_start": "2001-04-01",
+          "period_end_exclusive": "2002-04-01",
+          "period_label": "2001–2002",
+          "x": 538.1,
+          "y": 18.24883682008368,
+          "rainfall_quality_codes": {
+            "0": 241,
+            "15": 2,
+            "25": 122
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 4361.472
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-2002-04-01",
+          "period_start": "2002-04-01",
+          "period_end_exclusive": "2003-04-01",
+          "period_label": "2002–2003",
+          "x": 391.5,
+          "y": 0.07457874476987447,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 17.82432
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-2003-04-01",
+          "period_start": "2003-04-01",
+          "period_end_exclusive": "2004-04-01",
+          "period_label": "2003–2004",
+          "x": 544.5,
+          "y": 20.733794811715484,
+          "rainfall_quality_codes": {
+            "0": 363,
+            "15": 3
+          },
+          "flow_grade_codes": {
+            "30": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 4955.3769600000005
+        },
+        {
+          "record_id": "marne-predecessor-keyneton-water_year_apr_mar-2004-04-01",
+          "period_start": "2004-04-01",
+          "period_end_exclusive": "2005-04-01",
+          "period_label": "2004–2005",
+          "x": 584.7,
+          "y": 25.34925389121339,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 6058.471680000001
+        }
+      ],
+      "display_status": "Not final"
+    },
+    {
+      "contract_id": "evidence-dataset-v1",
+      "dataset_id": "yaldara-tanunda-water_year_apr_mar-approx-runoff",
+      "version": "0.1.0",
+      "label": "North Para at Yaldara / Tanunda · Apr–Mar",
+      "kind": "xy_points",
+      "evidence_type": "derived_observations",
+      "axes": {
+        "x": {
+          "variable_id": "rainfall_depth",
+          "label": "Representative annual rainfall",
+          "unit": "mm"
+        },
+        "y": {
+          "variable_id": "runoff_depth",
+          "label": "Approximate observed runoff",
+          "unit": "mm"
+        }
+      },
+      "geography": {
+        "catchment_id": "north-para",
+        "rainfall_station_id": "23318",
+        "flow_station_id": "A5050502",
+        "rainfall_role": "representative_point_proxy",
+        "spatial_support": "point_rainfall_paired_with_gauged_outlet",
+        "area_km2": 376.0,
+        "pairing_review_status": "unreviewed",
+        "runoff_depth_role": "observed_gauge_yield_per_upstream_area",
+        "area_basis": "published_gauge_area",
+        "area_note": "Uses 376 km² from DEW 2022/13. ARR Stage 3 Table A3 lists 384 km²; the later agency modelling value is adopted explicitly, not averaged. Runoff at 384 km² would be about 2.1% lower.",
+        "rainfall_label": "Tanunda",
+        "area_sources": [
+          {
+            "title": "Modelling the impacts of water use, urban development and climate change on the surface water resources of the Barossa PWRA",
+            "publisher": "Department for Environment and Water",
+            "year": 2022,
+            "url": "https://www.waterconnect.sa.gov.au/Content/Publications/DEW/BarossaPWRA_HydrologicalModellingPart2_Modelling_Impacts_on_SW_FINAL.pdf",
+            "pdf_page": 24,
+            "printed_page": "16",
+            "location": "Table 2.3",
+            "supports": "Published Yaldara A5050502 upstream area: 376 km²."
+          },
+          {
+            "title": "Australian Rainfall and Runoff, Project 5: Regional Flood Methods, Stage 3 report",
+            "publisher": "Engineers Australia / ARR research project",
+            "year": 2015,
+            "url": "https://www.arr-software.org/pdfs/ARR_Project05_Stage3_report.pdf",
+            "pdf_page": 109,
+            "printed_page": "91",
+            "location": "Table A3 continuation, A5050502 row",
+            "supports": "Alternative published Yaldara area of 384 km². Not the adopted value; recorded to make the area choice explicit."
+          }
+        ]
+      },
+      "period_basis": "water_year_apr_mar",
+      "boundary_id": "point_rainfall_vs_observed_gauge_flow",
+      "review": {
+        "status": "unreviewed",
+        "quality_policy_id": "preserve-source-codes",
+        "fit_approved": false
+      },
+      "publication": {
+        "status": "approved_public",
+        "allowed_build_profiles": [
+          "technical-review",
+          "public-learning"
+        ],
+        "public_display": {
+          "edition": "SP3.22-P2",
+          "authorised": true,
+          "date": "2026-09-16",
+          "label": "Not final",
+          "final": false,
+          "basis": "Project-owner permission for public display; not scientific review or agency endorsement."
+        },
+        "inherited_policy": {
+          "status": "review_only",
+          "allowed_build_profiles": [
+            "technical-review"
+          ]
+        }
+      },
+      "provenance": {
+        "sources": [
+          {
+            "source_id": "silo-23318",
+            "filename": "23318.csv",
+            "sha256": "21d9505951877cdfd140ae383e8c5cfbd8163ca3b7525d27ef052b62d4a6be91"
+          },
+          {
+            "source_id": "flow-A5050502",
+            "filename": "BulkExport-A5050502-20260907163410.zip",
+            "sha256": "1104406a2f6314d82dd5866543469c3d3563884318007cd264d53b28e192cfd5",
+            "archive_member": "DataSetExport-Discharge.Best Available@A5050502-Aggregate-m^3 s-20260907163410.csv"
+          },
+          {
+            "source_id": "sp33-gauge-area-registry",
+            "filename": "gauge_areas_v0_1.json",
+            "sha256": "019dec341e9bea582a62a75a27da55db0b74c1e2207e3dea1c2a64fa131a001e"
+          }
+        ],
+        "adapter_version": "0.1.0",
+        "transforms": [
+          {
+            "operation": "aggregate_then_pair",
+            "period_basis": "water_year_apr_mar",
+            "missing_rule": "all_expected_days_required",
+            "grade_policy": "all_finite_unreviewed",
+            "raw_days_available": true,
+            "gauge_merging": "none",
+            "rainfall_station_selection": "explicit_configuration"
+          },
+          {
+            "operation": "volume_to_approximate_runoff_depth",
+            "formula": "runoff_mm = flow_ML / area_km2",
+            "area_km2": 376.0,
+            "area_basis": "published_gauge_area",
+            "area_source_ids": [
+              "dew-2022-13",
+              "arr-2015-table-a3-yaldara"
+            ],
+            "input_dataset_id": "yaldara-tanunda-water_year_apr_mar",
+            "input_version": "0.1.0",
+            "input_dataset_sha256": "d5598000629320adab8ba722f5003448f76b2c2c47f987ad3021d62a047ccaf7",
+            "adapter_version": "sp3.3-v0.1",
+            "gauge_merging": "none",
+            "naturalisation": "none",
+            "fit_approval_changed": false
+          }
+        ]
+      },
+      "limitations": [
+        "Data-review preview, not a verified rainfall–runoff calibration dataset.",
+        "Only periods with every daily numeric value are included; source-grade interpretation remains unreviewed.",
+        "Rainfall is a point proxy; flow is observed developed-catchment discharge.",
+        "SILO and flow dates retain their exported day conventions; no day-boundary correction is claimed.",
+        "Approximate observed runoff is annual gauge flow (ML) divided by adopted upstream area (km²). Uses 376 km² from DEW 2022/13. ARR Stage 3 Table A3 lists 384 km²; the later agency modelling value is adopted explicitly, not averaged. Runoff at 384 km² would be about 2.1% lower.",
+        "No adjustment removes farm dams, water use, channel losses or groundwater contributions. Not an estimate of natural/no-dam runoff.",
+        "Unit compatibility permits a visual comparison only. No observed dataset or model parameters have been approved or fitted."
+      ],
+      "records": [
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1975-04-01",
+          "period_start": "1975-04-01",
+          "period_end_exclusive": "1976-04-01",
+          "period_label": "1975–1976",
+          "x": 506.2,
+          "y": 56.66369361702128,
+          "rainfall_quality_codes": {
+            "0": 314,
+            "15": 51,
+            "25": 1
+          },
+          "flow_grade_codes": {
+            "15": 9,
+            "20": 7,
+            "30": 350
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 21305.5488
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1979-04-01",
+          "period_start": "1979-04-01",
+          "period_end_exclusive": "1980-04-01",
+          "period_label": "1979–1980",
+          "x": 525.5,
+          "y": 66.34375659574468,
+          "rainfall_quality_codes": {
+            "0": 304,
+            "15": 62
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 72,
+            "30": 293
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 24945.25248
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1980-04-01",
+          "period_start": "1980-04-01",
+          "period_end_exclusive": "1981-04-01",
+          "period_label": "1980–1981",
+          "x": 577.5,
+          "y": 41.67674042553192,
+          "rainfall_quality_codes": {
+            "0": 300,
+            "15": 65
+          },
+          "flow_grade_codes": {
+            "20": 99,
+            "30": 266
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 15670.4544
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1981-04-01",
+          "period_start": "1981-04-01",
+          "period_end_exclusive": "1982-04-01",
+          "period_label": "1981–1982",
+          "x": 519.2,
+          "y": 109.50200425531916,
+          "rainfall_quality_codes": {
+            "0": 321,
+            "15": 44
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 42,
+            "30": 322
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 41172.753600000004
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1982-04-01",
+          "period_start": "1982-04-01",
+          "period_end_exclusive": "1983-04-01",
+          "period_label": "1982–1983",
+          "x": 352.0,
+          "y": 19.725786382978722,
+          "rainfall_quality_codes": {
+            "0": 314,
+            "15": 51
+          },
+          "flow_grade_codes": {
+            "15": 6,
+            "20": 104,
+            "30": 255
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 7416.89568
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1983-04-01",
+          "period_start": "1983-04-01",
+          "period_end_exclusive": "1984-04-01",
+          "period_label": "1983–1984",
+          "x": 497.6,
+          "y": 43.567751489361704,
+          "rainfall_quality_codes": {
+            "0": 294,
+            "15": 72
+          },
+          "flow_grade_codes": {
+            "15": 3,
+            "30": 363
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 16381.47456
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1984-04-01",
+          "period_start": "1984-04-01",
+          "period_end_exclusive": "1985-04-01",
+          "period_label": "1984–1985",
+          "x": 549.0,
+          "y": 24.301654468085108,
+          "rainfall_quality_codes": {
+            "0": 292,
+            "15": 73
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 363
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 9137.42208
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1985-04-01",
+          "period_start": "1985-04-01",
+          "period_end_exclusive": "1986-04-01",
+          "period_label": "1985–1986",
+          "x": 457.7,
+          "y": 16.074168510638298,
+          "rainfall_quality_codes": {
+            "0": 312,
+            "15": 53
+          },
+          "flow_grade_codes": {
+            "20": 1,
+            "30": 364
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 6043.88736
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1986-04-01",
+          "period_start": "1986-04-01",
+          "period_end_exclusive": "1987-04-01",
+          "period_label": "1986–1987",
+          "x": 569.4,
+          "y": 32.237402553191494,
+          "rainfall_quality_codes": {
+            "0": 285,
+            "15": 80
+          },
+          "flow_grade_codes": {
+            "20": 3,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 12121.26336
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1989-04-01",
+          "period_start": "1989-04-01",
+          "period_end_exclusive": "1990-04-01",
+          "period_label": "1989–1990",
+          "x": 562.7,
+          "y": 36.1891685106383,
+          "rainfall_quality_codes": {
+            "0": 279,
+            "15": 86
+          },
+          "flow_grade_codes": {
+            "20": 1,
+            "30": 364
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 13607.12736
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1990-04-01",
+          "period_start": "1990-04-01",
+          "period_end_exclusive": "1991-04-01",
+          "period_label": "1990–1991",
+          "x": 500.9,
+          "y": 32.06023659574468,
+          "rainfall_quality_codes": {
+            "0": 285,
+            "15": 80
+          },
+          "flow_grade_codes": {
+            "20": 3,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 12054.64896
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1991-04-01",
+          "period_start": "1991-04-01",
+          "period_end_exclusive": "1992-04-01",
+          "period_label": "1991–1992",
+          "x": 581.0,
+          "y": 43.97936936170213,
+          "rainfall_quality_codes": {
+            "0": 297,
+            "15": 69
+          },
+          "flow_grade_codes": {
+            "20": 5,
+            "30": 361
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 16536.24288
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1992-04-01",
+          "period_start": "1992-04-01",
+          "period_end_exclusive": "1993-04-01",
+          "period_label": "1992–1993",
+          "x": 857.7,
+          "y": 172.1736689361702,
+          "rainfall_quality_codes": {
+            "0": 249,
+            "15": 116
+          },
+          "flow_grade_codes": {
+            "15": 7,
+            "20": 20,
+            "30": 338
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 64737.29952
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1993-04-01",
+          "period_start": "1993-04-01",
+          "period_end_exclusive": "1994-04-01",
+          "period_label": "1993–1994",
+          "x": 462.0,
+          "y": 8.148806808510638,
+          "rainfall_quality_codes": {
+            "0": 302,
+            "15": 63
+          },
+          "flow_grade_codes": {
+            "20": 4,
+            "30": 361
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 3063.95136
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1994-04-01",
+          "period_start": "1994-04-01",
+          "period_end_exclusive": "1995-04-01",
+          "period_label": "1994–1995",
+          "x": 395.2,
+          "y": 2.1760851063829785,
+          "rainfall_quality_codes": {
+            "0": 289,
+            "15": 76
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 818.208
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1995-04-01",
+          "period_start": "1995-04-01",
+          "period_end_exclusive": "1996-04-01",
+          "period_label": "1995–1996",
+          "x": 547.6,
+          "y": 19.60112680851064,
+          "rainfall_quality_codes": {
+            "0": 277,
+            "15": 89
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 364
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 7370.02368
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1996-04-01",
+          "period_start": "1996-04-01",
+          "period_end_exclusive": "1997-04-01",
+          "period_label": "1996–1997",
+          "x": 585.5,
+          "y": 64.02708765957446,
+          "rainfall_quality_codes": {
+            "0": 279,
+            "15": 84,
+            "25": 2
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 9,
+            "30": 355
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 24074.18496
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1998-04-01",
+          "period_start": "1998-04-01",
+          "period_end_exclusive": "1999-04-01",
+          "period_label": "1998–1999",
+          "x": 502.1,
+          "y": 5.969251914893618,
+          "rainfall_quality_codes": {
+            "0": 336,
+            "15": 29
+          },
+          "flow_grade_codes": {
+            "20": 7,
+            "30": 358
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2244.43872
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-1999-04-01",
+          "period_start": "1999-04-01",
+          "period_end_exclusive": "2000-04-01",
+          "period_label": "1999–2000",
+          "x": 478.8,
+          "y": 5.842409361702127,
+          "rainfall_quality_codes": {
+            "0": 334,
+            "15": 32
+          },
+          "flow_grade_codes": {
+            "20": 75,
+            "30": 291
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2196.74592
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2000-04-01",
+          "period_start": "2000-04-01",
+          "period_end_exclusive": "2001-04-01",
+          "period_label": "2000–2001",
+          "x": 585.0,
+          "y": 23.078313191489364,
+          "rainfall_quality_codes": {
+            "0": 326,
+            "15": 39
+          },
+          "flow_grade_codes": {
+            "20": 3,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 8677.44576
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2001-04-01",
+          "period_start": "2001-04-01",
+          "period_end_exclusive": "2002-04-01",
+          "period_label": "2001–2002",
+          "x": 599.4,
+          "y": 36.073769361702126,
+          "rainfall_quality_codes": {
+            "0": 323,
+            "15": 42
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 363
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 13563.73728
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2002-04-01",
+          "period_start": "2002-04-01",
+          "period_end_exclusive": "2003-04-01",
+          "period_label": "2002–2003",
+          "x": 451.0,
+          "y": 4.183506382978723,
+          "rainfall_quality_codes": {
+            "0": 351,
+            "15": 14
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1572.9984
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2003-04-01",
+          "period_start": "2003-04-01",
+          "period_end_exclusive": "2004-04-01",
+          "period_label": "2003–2004",
+          "x": 548.3,
+          "y": 38.871819574468084,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "20": 6,
+            "30": 360
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 14615.80416
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2004-04-01",
+          "period_start": "2004-04-01",
+          "period_end_exclusive": "2005-04-01",
+          "period_label": "2004–2005",
+          "x": 598.9,
+          "y": 38.78346638297872,
+          "rainfall_quality_codes": {
+            "0": 362,
+            "15": 3
+          },
+          "flow_grade_codes": {
+            "20": 40,
+            "30": 325
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 14582.58336
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2005-04-01",
+          "period_start": "2005-04-01",
+          "period_end_exclusive": "2006-04-01",
+          "period_label": "2005–2006",
+          "x": 728.5,
+          "y": 68.38796680851064,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 6,
+            "30": 358
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 25713.87552
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2006-04-01",
+          "period_start": "2006-04-01",
+          "period_end_exclusive": "2007-04-01",
+          "period_label": "2006–2007",
+          "x": 384.0,
+          "y": 3.584290212765957,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 249,
+            "30": 116
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1347.69312
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2007-04-01",
+          "period_start": "2007-04-01",
+          "period_end_exclusive": "2008-04-01",
+          "period_label": "2007–2008",
+          "x": 407.7,
+          "y": 6.441625531914894,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "15": 92,
+            "20": 274
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2422.0512
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2008-04-01",
+          "period_start": "2008-04-01",
+          "period_end_exclusive": "2009-04-01",
+          "period_label": "2008–2009",
+          "x": 491.2,
+          "y": 6.846051063829788,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "15": 38,
+            "20": 175,
+            "30": 152
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2574.1152
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2009-04-01",
+          "period_start": "2009-04-01",
+          "period_end_exclusive": "2010-04-01",
+          "period_label": "2009–2010",
+          "x": 580.6,
+          "y": 30.917964255319152,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 1,
+            "30": 364
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 11625.15456
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2011-04-01",
+          "period_start": "2011-04-01",
+          "period_end_exclusive": "2012-04-01",
+          "period_label": "2011–2012",
+          "x": 622.2,
+          "y": 23.0995685106383,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "20": 46,
+            "30": 320
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 8685.43776
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2012-04-01",
+          "period_start": "2012-04-01",
+          "period_end_exclusive": "2013-04-01",
+          "period_label": "2012–2013",
+          "x": 347.8,
+          "y": 5.672665531914893,
+          "rainfall_quality_codes": {
+            "0": 364,
+            "25": 1
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2132.92224
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2013-04-01",
+          "period_start": "2013-04-01",
+          "period_end_exclusive": "2014-04-01",
+          "period_label": "2013–2014",
+          "x": 587.5,
+          "y": 30.208702978723405,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 3,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 11358.47232
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2014-04-01",
+          "period_start": "2014-04-01",
+          "period_end_exclusive": "2015-04-01",
+          "period_label": "2014–2015",
+          "x": 486.3,
+          "y": 29.51412510638298,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "10": 40,
+            "20": 3,
+            "30": 322
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 11097.31104
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2015-04-01",
+          "period_start": "2015-04-01",
+          "period_end_exclusive": "2016-04-01",
+          "period_label": "2015–2016",
+          "x": 433.1,
+          "y": 2.96816170212766,
+          "rainfall_quality_codes": {
+            "0": 318,
+            "15": 48
+          },
+          "flow_grade_codes": {
+            "10": 133,
+            "30": 233
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1116.0288
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2016-04-01",
+          "period_start": "2016-04-01",
+          "period_end_exclusive": "2017-04-01",
+          "period_label": "2016–2017",
+          "x": 777.0,
+          "y": 80.7601940425532,
+          "rainfall_quality_codes": {
+            "0": 329,
+            "15": 36
+          },
+          "flow_grade_codes": {
+            "10": 57,
+            "15": 3,
+            "20": 5,
+            "30": 300
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 30365.83296
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2017-04-01",
+          "period_start": "2017-04-01",
+          "period_end_exclusive": "2018-04-01",
+          "period_label": "2017–2018",
+          "x": 455.1,
+          "y": 9.922718297872342,
+          "rainfall_quality_codes": {
+            "0": 333,
+            "15": 32
+          },
+          "flow_grade_codes": {
+            "10": 26,
+            "30": 339
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 3730.9420800000003
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2018-04-01",
+          "period_start": "2018-04-01",
+          "period_end_exclusive": "2019-04-01",
+          "period_label": "2018–2019",
+          "x": 347.0,
+          "y": 1.3720825531914895,
+          "rainfall_quality_codes": {
+            "0": 352,
+            "15": 13
+          },
+          "flow_grade_codes": {
+            "10": 146,
+            "30": 219
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 515.90304
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2019-04-01",
+          "period_start": "2019-04-01",
+          "period_end_exclusive": "2020-04-01",
+          "period_label": "2019–2020",
+          "x": 385.1,
+          "y": 1.6992536170212766,
+          "rainfall_quality_codes": {
+            "0": 348,
+            "15": 17,
+            "25": 1
+          },
+          "flow_grade_codes": {
+            "10": 191,
+            "30": 175
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 638.91936
+        },
+        {
+          "record_id": "yaldara-tanunda-water_year_apr_mar-2020-04-01",
+          "period_start": "2020-04-01",
+          "period_end_exclusive": "2021-04-01",
+          "period_label": "2020–2021",
+          "x": 446.1,
+          "y": 4.737891063829787,
+          "rainfall_quality_codes": {
+            "0": 347,
+            "15": 18
+          },
+          "flow_grade_codes": {
+            "10": 107,
+            "30": 258
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1781.44704
+        }
+      ],
+      "display_status": "Not final"
+    },
+    {
+      "contract_id": "evidence-dataset-v1",
+      "dataset_id": "cox-uraidla-water_year_apr_mar-approx-runoff",
+      "version": "0.1.0",
+      "label": "Cox Creek at Uraidla / Uraidla · Apr–Mar",
+      "kind": "xy_points",
+      "evidence_type": "derived_observations",
+      "axes": {
+        "x": {
+          "variable_id": "rainfall_depth",
+          "label": "Representative annual rainfall",
+          "unit": "mm"
+        },
+        "y": {
+          "variable_id": "runoff_depth",
+          "label": "Approximate observed runoff",
+          "unit": "mm"
+        }
+      },
+      "geography": {
+        "catchment_id": "cox-creek",
+        "rainfall_station_id": "23750",
+        "flow_station_id": "A5030526",
+        "rainfall_role": "representative_point_proxy",
+        "spatial_support": "point_rainfall_paired_with_gauged_outlet",
+        "area_km2": 4.3,
+        "pairing_review_status": "unreviewed",
+        "runoff_depth_role": "observed_gauge_yield_per_upstream_area",
+        "area_basis": "published_gauge_area",
+        "area_note": "Uses the 4.3 km² area upstream of the Uraidla gauge, not the whole Cox Creek catchment.",
+        "rainfall_label": "Uraidla",
+        "area_sources": [
+          {
+            "title": "Groundwater flow model of Cox Creek Catchment, Mount Lofty Ranges, South Australia",
+            "publisher": "Department for Water",
+            "year": 2010,
+            "url": "https://www.waterconnect.sa.gov.au/Content/Publications/DEW/Groundwater%20Flow%20Model%20of%20Cox%20Creek%20Catchment,%20Mount%20Lofty%20Ranges,%20South%20Australia.pdf",
+            "pdf_page": 19,
+            "printed_page": "5",
+            "location": "Section 2.4 (paragraph continuing from p. 4)",
+            "supports": "A5030526 gauged catchment area: 4.3 km², not the larger whole Cox Creek catchment or groundwater model domain."
+          }
+        ]
+      },
+      "period_basis": "water_year_apr_mar",
+      "boundary_id": "point_rainfall_vs_observed_gauge_flow",
+      "review": {
+        "status": "unreviewed",
+        "quality_policy_id": "preserve-source-codes",
+        "fit_approved": false
+      },
+      "publication": {
+        "status": "approved_public",
+        "allowed_build_profiles": [
+          "technical-review",
+          "public-learning"
+        ],
+        "public_display": {
+          "edition": "SP3.22-P2",
+          "authorised": true,
+          "date": "2026-09-16",
+          "label": "Not final",
+          "final": false,
+          "basis": "Project-owner permission for public display; not scientific review or agency endorsement."
+        },
+        "inherited_policy": {
+          "status": "review_only",
+          "allowed_build_profiles": [
+            "technical-review"
+          ]
+        }
+      },
+      "provenance": {
+        "sources": [
+          {
+            "source_id": "silo-23750",
+            "filename": "23750.csv",
+            "sha256": "cb4de515781150dd168a35693e314ba61e4459d0e6b6a56540b4199cb9c8e891"
+          },
+          {
+            "source_id": "flow-A5030526",
+            "filename": "BulkExport-A5030526-20260907163546.zip",
+            "sha256": "a03917bf0191ee023947a13f303785760b3e42cfd45fc6ea6d5b2c49bcbbf221",
+            "archive_member": "DataSetExport-Discharge.Best Available@A5030526-Aggregate-m^3 s-20260907163546.csv"
+          },
+          {
+            "source_id": "sp33-gauge-area-registry",
+            "filename": "gauge_areas_v0_1.json",
+            "sha256": "019dec341e9bea582a62a75a27da55db0b74c1e2207e3dea1c2a64fa131a001e"
+          }
+        ],
+        "adapter_version": "0.1.0",
+        "transforms": [
+          {
+            "operation": "aggregate_then_pair",
+            "period_basis": "water_year_apr_mar",
+            "missing_rule": "all_expected_days_required",
+            "grade_policy": "all_finite_unreviewed",
+            "raw_days_available": true,
+            "gauge_merging": "none",
+            "rainfall_station_selection": "explicit_configuration"
+          },
+          {
+            "operation": "volume_to_approximate_runoff_depth",
+            "formula": "runoff_mm = flow_ML / area_km2",
+            "area_km2": 4.3,
+            "area_basis": "published_gauge_area",
+            "area_source_ids": [
+              "dfw-2010-14"
+            ],
+            "input_dataset_id": "cox-uraidla-water_year_apr_mar",
+            "input_version": "0.1.0",
+            "input_dataset_sha256": "206fb92461270631d35861586796aa9b8ffb5048d667be4b5a5f3bb69f4fd9c4",
+            "adapter_version": "sp3.3-v0.1",
+            "gauge_merging": "none",
+            "naturalisation": "none",
+            "fit_approval_changed": false
+          }
+        ]
+      },
+      "limitations": [
+        "Data-review preview, not a verified rainfall–runoff calibration dataset.",
+        "Only periods with every daily numeric value are included; source-grade interpretation remains unreviewed.",
+        "Rainfall is a point proxy; flow is observed developed-catchment discharge.",
+        "SILO and flow dates retain their exported day conventions; no day-boundary correction is claimed.",
+        "Approximate observed runoff is annual gauge flow (ML) divided by adopted upstream area (km²). Uses the 4.3 km² area upstream of the Uraidla gauge, not the whole Cox Creek catchment.",
+        "No adjustment removes farm dams, water use, channel losses or groundwater contributions. Not an estimate of natural/no-dam runoff.",
+        "Unit compatibility permits a visual comparison only. No observed dataset or model parameters have been approved or fitted."
+      ],
+      "records": [
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1977-04-01",
+          "period_start": "1977-04-01",
+          "period_end_exclusive": "1978-04-01",
+          "period_label": "1977–1978",
+          "x": 712.0,
+          "y": 193.06984186046512,
+          "rainfall_quality_codes": {
+            "0": 328,
+            "15": 37
+          },
+          "flow_grade_codes": {
+            "15": 9,
+            "20": 4,
+            "30": 352
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 830.20032
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1978-04-01",
+          "period_start": "1978-04-01",
+          "period_end_exclusive": "1979-04-01",
+          "period_label": "1978–1979",
+          "x": 1058.0,
+          "y": 312.1652093023256,
+          "rainfall_quality_codes": {
+            "0": 336,
+            "15": 29
+          },
+          "flow_grade_codes": {
+            "20": 4,
+            "30": 361
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1342.3104
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1979-04-01",
+          "period_start": "1979-04-01",
+          "period_end_exclusive": "1980-04-01",
+          "period_label": "1979–1980",
+          "x": 1187.0,
+          "y": 515.6311813953489,
+          "rainfall_quality_codes": {
+            "0": 319,
+            "15": 47
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 6,
+            "30": 359
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2217.21408
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1980-04-01",
+          "period_start": "1980-04-01",
+          "period_end_exclusive": "1981-04-01",
+          "period_label": "1980–1981",
+          "x": 1146.9,
+          "y": 332.6319627906977,
+          "rainfall_quality_codes": {
+            "0": 313,
+            "15": 52
+          },
+          "flow_grade_codes": {
+            "20": 7,
+            "30": 358
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1430.31744
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1981-04-01",
+          "period_start": "1981-04-01",
+          "period_end_exclusive": "1982-04-01",
+          "period_label": "1981–1982",
+          "x": 1273.0,
+          "y": 549.5019906976745,
+          "rainfall_quality_codes": {
+            "0": 315,
+            "15": 50
+          },
+          "flow_grade_codes": {
+            "15": 80,
+            "20": 7,
+            "30": 278
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2362.85856
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1982-04-01",
+          "period_start": "1982-04-01",
+          "period_end_exclusive": "1983-04-01",
+          "period_label": "1982–1983",
+          "x": 684.0,
+          "y": 169.83828837209302,
+          "rainfall_quality_codes": {
+            "0": 345,
+            "15": 20
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 730.30464
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1983-04-01",
+          "period_start": "1983-04-01",
+          "period_end_exclusive": "1984-04-01",
+          "period_label": "1983–1984",
+          "x": 1083.9,
+          "y": 351.8670139534884,
+          "rainfall_quality_codes": {
+            "0": 339,
+            "15": 27
+          },
+          "flow_grade_codes": {
+            "15": 7,
+            "20": 7,
+            "30": 352
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1513.02816
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1984-04-01",
+          "period_start": "1984-04-01",
+          "period_end_exclusive": "1985-04-01",
+          "period_label": "1984–1985",
+          "x": 985.0,
+          "y": 317.5842976744186,
+          "rainfall_quality_codes": {
+            "0": 322,
+            "15": 43
+          },
+          "flow_grade_codes": {
+            "15": 117,
+            "30": 248
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1365.61248
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1985-04-01",
+          "period_start": "1985-04-01",
+          "period_end_exclusive": "1986-04-01",
+          "period_label": "1985–1986",
+          "x": 937.5,
+          "y": 274.31397209302327,
+          "rainfall_quality_codes": {
+            "0": 319,
+            "15": 46
+          },
+          "flow_grade_codes": {
+            "20": 19,
+            "30": 346
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1179.55008
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1987-04-01",
+          "period_start": "1987-04-01",
+          "period_end_exclusive": "1988-04-01",
+          "period_label": "1987–1988",
+          "x": 1013.5,
+          "y": 453.34280930232563,
+          "rainfall_quality_codes": {
+            "0": 314,
+            "15": 52
+          },
+          "flow_grade_codes": {
+            "20": 6,
+            "30": 360
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1949.37408
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1988-04-01",
+          "period_start": "1988-04-01",
+          "period_end_exclusive": "1989-04-01",
+          "period_label": "1988–1989",
+          "x": 917.6,
+          "y": 327.22091162790696,
+          "rainfall_quality_codes": {
+            "0": 192,
+            "15": 52,
+            "25": 121
+          },
+          "flow_grade_codes": {
+            "20": 18,
+            "30": 347
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1407.04992
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1995-04-01",
+          "period_start": "1995-04-01",
+          "period_end_exclusive": "1996-04-01",
+          "period_label": "1995–1996",
+          "x": 1088.9,
+          "y": 344.5792744186047,
+          "rainfall_quality_codes": {
+            "0": 319,
+            "15": 47
+          },
+          "flow_grade_codes": {
+            "20": 5,
+            "30": 361
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1481.69088
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1996-04-01",
+          "period_start": "1996-04-01",
+          "period_end_exclusive": "1997-04-01",
+          "period_label": "1996–1997",
+          "x": 1176.0,
+          "y": 442.57696744186046,
+          "rainfall_quality_codes": {
+            "0": 320,
+            "15": 45
+          },
+          "flow_grade_codes": {
+            "20": 3,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1903.08096
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1997-04-01",
+          "period_start": "1997-04-01",
+          "period_end_exclusive": "1998-04-01",
+          "period_label": "1997–1998",
+          "x": 817.6,
+          "y": 186.17592558139535,
+          "rainfall_quality_codes": {
+            "0": 328,
+            "15": 37
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 800.55648
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1998-04-01",
+          "period_start": "1998-04-01",
+          "period_end_exclusive": "1999-04-01",
+          "period_label": "1998–1999",
+          "x": 1013.6,
+          "y": 232.97056744186048,
+          "rainfall_quality_codes": {
+            "0": 345,
+            "15": 20
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 363
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1001.77344
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-1999-04-01",
+          "period_start": "1999-04-01",
+          "period_end_exclusive": "2000-04-01",
+          "period_label": "1999–2000",
+          "x": 1152.7,
+          "y": 313.0714046511628,
+          "rainfall_quality_codes": {
+            "0": 334,
+            "15": 32
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 364
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1346.20704
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2000-04-01",
+          "period_start": "2000-04-01",
+          "period_end_exclusive": "2001-04-01",
+          "period_label": "2000–2001",
+          "x": 1227.2,
+          "y": 455.5048186046512,
+          "rainfall_quality_codes": {
+            "0": 313,
+            "15": 34,
+            "25": 18
+          },
+          "flow_grade_codes": {
+            "20": 16,
+            "30": 349
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1958.67072
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2001-04-01",
+          "period_start": "2001-04-01",
+          "period_end_exclusive": "2002-04-01",
+          "period_label": "2001–2002",
+          "x": 1161.5,
+          "y": 388.44837209302324,
+          "rainfall_quality_codes": {
+            "0": 330,
+            "15": 35
+          },
+          "flow_grade_codes": {
+            "20": 3,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1670.328
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2002-04-01",
+          "period_start": "2002-04-01",
+          "period_end_exclusive": "2003-04-01",
+          "period_label": "2002–2003",
+          "x": 877.3,
+          "y": 199.38708837209302,
+          "rainfall_quality_codes": {
+            "0": 336,
+            "15": 29
+          },
+          "flow_grade_codes": {
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 857.36448
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2003-04-01",
+          "period_start": "2003-04-01",
+          "period_end_exclusive": "2004-04-01",
+          "period_label": "2003–2004",
+          "x": 1122.5,
+          "y": 343.71728372093025,
+          "rainfall_quality_codes": {
+            "0": 325,
+            "15": 41
+          },
+          "flow_grade_codes": {
+            "20": 6,
+            "30": 360
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1477.98432
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2004-04-01",
+          "period_start": "2004-04-01",
+          "period_end_exclusive": "2005-04-01",
+          "period_label": "2004–2005",
+          "x": 1242.6,
+          "y": 419.3434046511628,
+          "rainfall_quality_codes": {
+            "0": 312,
+            "15": 32,
+            "25": 21
+          },
+          "flow_grade_codes": {
+            "20": 111,
+            "30": 254
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1803.1766400000001
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2005-04-01",
+          "period_start": "2005-04-01",
+          "period_end_exclusive": "2006-04-01",
+          "period_label": "2005–2006",
+          "x": 1192.6,
+          "y": 371.60238139534886,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 161,
+            "30": 203
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1597.89024
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2006-04-01",
+          "period_start": "2006-04-01",
+          "period_end_exclusive": "2007-04-01",
+          "period_label": "2006–2007",
+          "x": 787.0,
+          "y": 135.88107906976745,
+          "rainfall_quality_codes": {
+            "0": 363,
+            "15": 2
+          },
+          "flow_grade_codes": {
+            "20": 183,
+            "30": 182
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 584.28864
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2007-04-01",
+          "period_start": "2007-04-01",
+          "period_end_exclusive": "2008-04-01",
+          "period_label": "2007–2008",
+          "x": 958.2,
+          "y": 195.17358139534883,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "20": 43,
+            "30": 323
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 839.2464
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2008-04-01",
+          "period_start": "2008-04-01",
+          "period_end_exclusive": "2009-04-01",
+          "period_label": "2008–2009",
+          "x": 967.7,
+          "y": 223.76997209302326,
+          "rainfall_quality_codes": {
+            "0": 355,
+            "15": 10
+          },
+          "flow_grade_codes": {
+            "20": 41,
+            "30": 324
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 962.21088
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2009-04-01",
+          "period_start": "2009-04-01",
+          "period_end_exclusive": "2010-04-01",
+          "period_label": "2009–2010",
+          "x": 1177.4,
+          "y": 290.80833488372093,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 4,
+            "30": 361
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1250.47584
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2010-04-01",
+          "period_start": "2010-04-01",
+          "period_end_exclusive": "2011-04-01",
+          "period_label": "2010–2011",
+          "x": 1365.2,
+          "y": 378.11854883720935,
+          "rainfall_quality_codes": {
+            "0": 361,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "20": 6,
+            "30": 359
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1625.90976
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2011-04-01",
+          "period_start": "2011-04-01",
+          "period_end_exclusive": "2012-04-01",
+          "period_label": "2011–2012",
+          "x": 901.6,
+          "y": 252.7320558139535,
+          "rainfall_quality_codes": {
+            "0": 360,
+            "15": 6
+          },
+          "flow_grade_codes": {
+            "20": 1,
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1086.74784
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2012-04-01",
+          "period_start": "2012-04-01",
+          "period_end_exclusive": "2013-04-01",
+          "period_label": "2012–2013",
+          "x": 820.3,
+          "y": 217.70388837209302,
+          "rainfall_quality_codes": {
+            "0": 360,
+            "15": 5
+          },
+          "flow_grade_codes": {
+            "1": 31,
+            "20": 9,
+            "30": 325
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 936.12672
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2013-04-01",
+          "period_start": "2013-04-01",
+          "period_end_exclusive": "2014-04-01",
+          "period_label": "2013–2014",
+          "x": 1297.6,
+          "y": 318.36993488372093,
+          "rainfall_quality_codes": {
+            "0": 363,
+            "15": 2
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 363
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1368.99072
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2014-04-01",
+          "period_start": "2014-04-01",
+          "period_end_exclusive": "2015-04-01",
+          "period_label": "2014–2015",
+          "x": 923.9,
+          "y": 265.8728930232558,
+          "rainfall_quality_codes": {
+            "0": 361,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "20": 33,
+            "30": 332
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1143.25344
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2015-04-01",
+          "period_start": "2015-04-01",
+          "period_end_exclusive": "2016-04-01",
+          "period_label": "2015–2016",
+          "x": 1015.2,
+          "y": 201.74801860465118,
+          "rainfall_quality_codes": {
+            "0": 362,
+            "15": 4
+          },
+          "flow_grade_codes": {
+            "30": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 867.51648
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2016-04-01",
+          "period_start": "2016-04-01",
+          "period_end_exclusive": "2017-04-01",
+          "period_label": "2016–2017",
+          "x": 1737.2,
+          "y": 652.0005209302326,
+          "rainfall_quality_codes": {
+            "0": 356,
+            "15": 9
+          },
+          "flow_grade_codes": {
+            "15": 4,
+            "20": 8,
+            "30": 353
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2803.60224
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2017-04-01",
+          "period_start": "2017-04-01",
+          "period_end_exclusive": "2018-04-01",
+          "period_label": "2017–2018",
+          "x": 1068.4,
+          "y": 348.73451162790695,
+          "rainfall_quality_codes": {
+            "0": 354,
+            "15": 11
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "20": 2,
+            "30": 362
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1499.5584
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2018-04-01",
+          "period_start": "2018-04-01",
+          "period_end_exclusive": "2019-04-01",
+          "period_label": "2018–2019",
+          "x": 994.1,
+          "y": 224.29841860465118,
+          "rainfall_quality_codes": {
+            "0": 363,
+            "15": 2
+          },
+          "flow_grade_codes": {
+            "20": 2,
+            "30": 363
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 964.4832
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2019-04-01",
+          "period_start": "2019-04-01",
+          "period_end_exclusive": "2020-04-01",
+          "period_label": "2019–2020",
+          "x": 914.0,
+          "y": 191.3237581395349,
+          "rainfall_quality_codes": {
+            "0": 366
+          },
+          "flow_grade_codes": {
+            "15": 1,
+            "30": 365
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 822.6921600000001
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2020-04-01",
+          "period_start": "2020-04-01",
+          "period_end_exclusive": "2021-04-01",
+          "period_label": "2020–2021",
+          "x": 1083.6,
+          "y": 224.47322790697675,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "20": 71,
+            "30": 294
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 965.23488
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2021-04-01",
+          "period_start": "2021-04-01",
+          "period_end_exclusive": "2022-04-01",
+          "period_label": "2021–2022",
+          "x": 1082.8,
+          "y": 349.3152,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "1": 130,
+            "15": 11,
+            "20": 63,
+            "30": 161
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1502.05536
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2022-04-01",
+          "period_start": "2022-04-01",
+          "period_end_exclusive": "2023-04-01",
+          "period_label": "2022–2023",
+          "x": 1390.1,
+          "y": 511.69495813953495,
+          "rainfall_quality_codes": {
+            "0": 365
+          },
+          "flow_grade_codes": {
+            "0": 1,
+            "1": 81,
+            "20": 87,
+            "30": 196
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 2200.28832
+        },
+        {
+          "record_id": "cox-uraidla-water_year_apr_mar-2023-04-01",
+          "period_start": "2023-04-01",
+          "period_end_exclusive": "2024-04-01",
+          "period_label": "2023–2024",
+          "x": 1082.0,
+          "y": 452.6154418604651,
+          "rainfall_quality_codes": {
+            "0": 364,
+            "15": 2
+          },
+          "flow_grade_codes": {
+            "30": 366
+          },
+          "complete_exported_daily_values": true,
+          "included_in_fit": false,
+          "source_streamflow_ml": 1946.2464
+        }
+      ],
+      "display_status": "Not final"
+    }
+  ]
+}

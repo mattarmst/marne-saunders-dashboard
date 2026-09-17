@@ -1,0 +1,122 @@
+{
+  "edition": "SP3.22-P2",
+  "display_status": "Preliminary",
+  "final": false,
+  "notice": "Local rainfall, flow and dam-survey extracts are not final. Information Pack dam counts and water-use summaries are preliminary. These records provide context, not calibration of the illustrative models.",
+  "data": [
+    {
+      "dataset_id": "information-pack-surface-use-summary",
+      "version": "0.1",
+      "type": "summary",
+      "title": "Surface-water use in the Marne Saunders area",
+      "period": "2010/11–2019/20 use; limits as of 2020/21",
+      "year_basis": "July–June water-use year",
+      "source_id": "MRLB_INFO_2022",
+      "source_note": "Project extraction of the 2022 Information Pack, Table 1; original pack not independently re-extracted in this update.",
+      "status": "Preliminary summary",
+      "fit_approved": false,
+      "allowed_profiles": [
+        "technical-review",
+        "public-learning"
+      ],
+      "rows": [
+        {
+          "group": "Licensed surface-water dams",
+          "mean": 403,
+          "min": 179,
+          "max": 638,
+          "unit": "ML/year",
+          "method": "Reported licensed actual use",
+          "limit": 1276,
+          "limit_kind": "Reported allocation limit",
+          "limit_unit": "ML"
+        },
+        {
+          "group": "Stock/domestic surface-water use",
+          "mean": 294,
+          "min": 68,
+          "max": 460,
+          "unit": "ML/year",
+          "method": "Modelled estimate, not metered group totals",
+          "limit": 496,
+          "limit_kind": "Planning provision—not an individual allocation",
+          "limit_unit": "ML"
+        }
+      ],
+      "limitations": [
+        "Means and ranges are not individual annual observations.",
+        "The reporting period differs from the dashboard’s April–March illustration.",
+        "The model’s 640 ML common group cap is an illustrative experiment, not a calibration to these limits."
+      ],
+      "review": {
+        "status": "unreviewed"
+      },
+      "publication": {
+        "approved_public": true,
+        "public_display": {
+          "edition": "SP3.22-P2",
+          "authorised": true,
+          "date": "2026-09-16",
+          "label": "Preliminary",
+          "final": false,
+          "basis": "Project-owner permission for public display; not scientific review or agency endorsement."
+        },
+        "inherited_policy": {
+          "approved_public": false
+        }
+      },
+      "display_status": "Preliminary"
+    },
+    {
+      "dataset_id": "information-pack-dam-shares",
+      "version": "0.1",
+      "type": "shares",
+      "title": "Dams and capacity by licensing group",
+      "period": "2020 inventory summary",
+      "year_basis": "As-at snapshot",
+      "source_id": "MRLB_INFO_2022",
+      "status": "Preliminary summary",
+      "fit_approved": false,
+      "allowed_profiles": [
+        "technical-review",
+        "public-learning"
+      ],
+      "rows": [
+        {
+          "group": "Licensed",
+          "dam_count_share": 0.11,
+          "capacity_share": 0.56
+        },
+        {
+          "group": "Non-Licensed",
+          "dam_count_share": 0.89,
+          "capacity_share": 0.44
+        }
+      ],
+      "total_dams": 964,
+      "total_capacity_ml": 3779,
+      "limitations": [
+        "Group shares do not describe individual behaviour or complete size distributions."
+      ],
+      "source_note": "Project extraction of the 2022 Information Pack; original pack not independently re-extracted in this update.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "publication": {
+        "approved_public": true,
+        "public_display": {
+          "edition": "SP3.22-P2",
+          "authorised": true,
+          "date": "2026-09-16",
+          "label": "Preliminary",
+          "final": false,
+          "basis": "Project-owner permission for public display; not scientific review or agency endorsement."
+        },
+        "inherited_policy": {
+          "approved_public": false
+        }
+      },
+      "display_status": "Preliminary"
+    }
+  ]
+}
